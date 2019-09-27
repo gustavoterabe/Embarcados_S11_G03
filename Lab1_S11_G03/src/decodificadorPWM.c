@@ -1,4 +1,4 @@
-//Projeto desenvolvido pelos alunos da equipe G03
+//Projeto desenvolvido pelos alunos da equipe G03:
 //Bruno Arrielo Chagas
 //Gustavo Terabe Moy
 //Lucas Andre Walter
@@ -17,16 +17,27 @@
 #include "system_TM4C1294.h" 
 
 #define PipeLine 2
-#define NumberOfCyclesUP 52 //(9*P)+21+(3*P)+7
-#define NumberOfCyclesDOWN 51 //(9*P)+21+(3*P)+6
+#define NumberOfCyclesUP120  89    //(9*P)+21+(3*P)+7
+#define NumberOfCyclesDOWN120 88   //(9*P)+21+(3*P)+6
+#define NumberOfCyclesUP  52    //(9*P)+21+(3*P)+7
+#define NumberOfCyclesDOWN 53
 
 float CalculaFreq(int t_up,int t_down)//em Mega
 {
-  int numClocks = t_up*NumberOfCyclesUP+t_down*NumberOfCyclesDOWN+2;
-  float f = 24000000/numClocks; 
- // f = (f/1000000);
+  int numClocks;
+  float f;
+  if(SystemCoreClock>=100000000)
+  {
+    numClocks = t_up*NumberOfCyclesUP120+t_down*NumberOfCyclesDOWN120+2;
+  }
+  else
+  {
+    numClocks = t_up*NumberOfCyclesUP+t_down*NumberOfCyclesDOWN+2;
+  }
+   f = SystemCoreClock/numClocks; 
   return f;
 }
+
 
 float CalcPeriodo(float frequencia)
 {
@@ -56,9 +67,9 @@ void inicializa_portas(void)
   GPIOPinTypeGPIOInput(GPIO_PORTM_BASE, GPIO_PIN_0); //Setar valor como pino de input
   GPIOPadConfigSet(GPIO_PORTM_BASE, GPIO_PIN_0, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
   
-  //PORT J PINO 0 PARA INICIAR MEDIÇÕES e PINO 1 PARA INICIAR TESTES
+  //PORT J PINO 0 PARA INICIAR MEDIÃ‡Ã•ES e PINO 1 PARA INICIAR TESTES
    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOJ); // Habilita GPIO J (push-button SW1 = PJ0, push-button SW2 = PJ1)
-  while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOJ)); // Aguarda final da habilitação
+  while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOJ)); // Aguarda final da habilitaÃ§Ã£o
     
   GPIOPinTypeGPIOInput(GPIO_PORTJ_BASE, GPIO_PIN_0 | GPIO_PIN_1); // push-buttons SW1 e SW2 como entrada
   GPIOPadConfigSet(GPIO_PORTJ_BASE, GPIO_PIN_0 | GPIO_PIN_1, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);  
@@ -88,17 +99,17 @@ void UART0_Handler(void){
 
 int PegaValorPwm(void)
 {
-  //aux = GPIOPinRead(GPIO_PORTM_BASE, GPIO_PIN_0);  //MEDIÇÃO REAL
+  //aux = GPIOPinRead(GPIO_PORTM_BASE, GPIO_PIN_0);  //MEDIÃ‡ÃƒO REAL
   
-  //UTILIZAÇÃO DOS BOTÃO A DIREITA PARA TESTES
- if( GPIOPinRead(GPIO_PORTM_BASE, GPIO_PIN_0)== 1){return 0;} //TESTE
-  else{return 1;}
+  //UTILIZAÃ‡ÃƒO DOS BOTÃƒO A DIREITA PARA TESTES
+ if( GPIOPinRead(GPIO_PORTM_BASE, GPIO_PIN_0)== 1){return 1;} //TESTE
+  else{return 0;}
   
 }
 
 void imprime_valores(int tup, int tdown)
 {
-  if(tup != 0 && tdown != 0)
+  if(true)//t_upant != tup || t_downant != tdown)
   {
     float aux_conv, aux_t, freq,periodo;
     int ts, f, duty;  
@@ -113,9 +124,9 @@ void imprime_valores(int tup, int tdown)
     UARTprintf("Caso entre 0 e 100\n");
     UARTprintf("Duty Cycle: %d por cento\n",duty);
     UARTprintf("Periodo: %d [us]\n",ts);
-    UARTprintf("Frequencia: %d [MHz]\n",f);
+    UARTprintf("Frequencia: %d [Hz]\n",f);
     UARTprintf("\n");     
-    while(UARTTxBytesFree() != 1024){}//FORÇA O PROGRAMA A ESPERAR TODOS OS DADOS SEREM PASSADOS PELA UART
+    while(UARTTxBytesFree() != 1024){}//FORÃ‡A O PROGRAMA A ESPERAR TODOS OS DADOS SEREM PASSADOS PELA UART
   }
   
   if(tup == 0 || tdown == 0)
@@ -143,7 +154,7 @@ void main(void)
   int v;
   int aux = 0;
   int t_up = 0,t_down = 0;
-  int cp = 0; //VARIAVEL PARA FAZER SITUAÇÃO DE 0 E 100% DE DUTY CYCLE
+  int cp = 0; //VARIAVEL PARA FAZER SITUAÃ‡ÃƒO DE 0 E 100% DE DUTY CYCLE
   
   //INICIALIZA PORTAS
   inicializa_portas();
@@ -151,13 +162,13 @@ void main(void)
   //INICIALIZA UART 
   UARTInit();
   
-  //LOOP PARA ESPERAR USUARIO APERTAR BOTAO PARA INICIAR( OLHANDO A PLACA DE FRENTE´É O BOTÃO A ESQUERDA
+  //LOOP PARA ESPERAR USUARIO APERTAR BOTAO PARA INICIAR( OLHANDO A PLACA DE FRENTEÂ´Ã‰ O BOTÃƒO A ESQUERDA
   while(GPIOPinRead(GPIO_PORTJ_BASE, GPIO_PIN_0) == 0x01){}
   
   while(1)
   {
     v = PegaValorPwm();
-    if(cp == 10000) //CONDIÇÂO PARA ASSUMIR CASO 0 OU 100% DE DUTY CYCLE
+    if(cp == 10000) //CONDIÃ‡Ã‚O PARA ASSUMIR CASO 0 OU 100% DE DUTY CYCLE
     {
       imprime_valores(t_up, t_down);
       t_up = 0;
@@ -179,17 +190,28 @@ void main(void)
       }
       else
       {
-        imprime_valores(t_up, t_down);
-       
-        t_up = 0;
-        t_down = 0;
-        aux = 0;
-        cp = 0;
-      }
+          imprime_valores(t_up, t_down);
+          t_up = 0;
+          t_down = 0;
+          aux = 0;
+          cp = 0;
+          v = PegaValorPwm();
+          if(v==1)
+          {
+            while(v==1)
+            {
+              v = PegaValorPwm();
+            }
+          }
+          
+    }
     }
     else
     {
-      if(aux == 1){t_down++;}
+      if(aux == 1)
+      {
+        t_down++;
+      }
       else{cp++;}
     }
   }  
