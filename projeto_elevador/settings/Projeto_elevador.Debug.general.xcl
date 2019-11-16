@@ -1,0 +1,13 @@
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\bin\armproc.dll" 
+
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\bin\armsim2.dll" 
+
+"C:\Users\gusta\OneDrive\Documentos\Faculdade\8ºPeríodo\Sistemas Embarcados\Tiva_RTOS2_IAR8\projeto_elevador\Debug\Exe\Projeto_elevador.out" 
+
+--plugin="C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\bin\armbat.dll" 
+
+--device_macro="C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\config\debugger\TexasInstruments\TM4C129.dmac" 
+
+
+
+
