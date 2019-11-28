@@ -2396,4 +2396,7 @@
     <file>
         <name>$PROJ_DIR$\src\system_tm4c1294.c</name>
     </file>
+    <file>
+        <name>$PROJ_DIR$\..\..\EK-TM4C1294_IAR8\TivaWare_C_Series-2.1.4.178\utils\uartstdio.c</name>
+    </file>
 </project>

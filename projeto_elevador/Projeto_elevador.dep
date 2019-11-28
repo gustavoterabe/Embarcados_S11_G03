@@ -1,83 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>4</fileVersion>
-    <fileChecksum>3745772765</fileChecksum>
+    <fileChecksum>2694800812</fileChecksum>
     <configuration>
         <name>Debug</name>
         <outputs>
-            <file>$PROJ_DIR$\src\startup_tm4c1294.s</file>
             <file>$PROJ_DIR$\src\rtx_lib.c</file>
+            <file>$PROJ_DIR$\src\startup_tm4c1294.s</file>
+            <file>$PROJ_DIR$\src\system_tm4c1294.c</file>
+            <file>$PROJ_DIR$\..\..\EK-TM4C1294_IAR8\TivaWare_C_Series-2.1.4.178\utils\uartstdio.c</file>
             <file>$PROJ_DIR$\src\mydelay.s</file>
-            <file>$PROJ_DIR$\src\driverleds.c</file>
             <file>$PROJ_DIR$\src\projeto_elevador.c</file>
             <file>$PROJ_DIR$\src\RTX_Config.c</file>
-            <file>$PROJ_DIR$\src\system_tm4c1294.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\Projeto_elevador.pbd</file>
-            <file>$PROJ_DIR$\Debug\Obj\projeto_elevador.o</file>
-            <file>$PROJ_DIR$\Debug\Obj\driverleds.xcl</file>
-            <file>$PROJ_DIR$\Debug\Exe\Projeto_elevador.out</file>
-            <file>$PROJ_DIR$\Debug\Obj\system_tm4c1294.o</file>
-            <file>$PROJ_DIR$\Debug\Obj\driverleds.o</file>
-            <file>$PROJ_DIR$\Debug\Obj\rtx_lib.o</file>
-            <file>$PROJ_DIR$\Debug\Obj\RTX_Config.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\startup_tm4c1294.o</file>
-            <file>$PROJ_DIR$\Debug\Obj\rtx_lib.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\RTX_Config.o</file>
-            <file>$PROJ_DIR$\Debug\Obj\mydelay.o</file>
-            <file>$PROJ_DIR$\Debug\Obj\projeto_elevador.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\system_tm4c1294.xcl</file>
             <file>$PROJ_DIR$\..\driverlib\ewarm\Exe\driverlib.a</file>
-            <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
-            <file>$TOOLKIT_DIR$\config\linker\TexasInstruments\TM4C1294NC.icf</file>
-            <file>$PROJ_DIR$\Debug\List\Projeto_elevador.map</file>
-            <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
-            <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
-            <file>$TOOLKIT_DIR$\lib\m7M_tls.a</file>
-            <file>$PROJ_DIR$\..\projeto_p_testes\src\driverleds.c</file>
-            <file>$PROJ_DIR$\..\sinalizador\src\main.c</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
-            <file>$TOOLKIT_DIR$\CMSIS\Core\Include\cmsis_compiler.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
-            <file>$PROJ_DIR$\src\system_tm4c1294.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\driverleds.__cstat.et</file>
-            <file>$PROJ_DIR$\src\driverleds.h</file>
-            <file>$PROJ_DIR$\..\projeto_p_testes\src\testes.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\projeto_elevador.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\inc\c\stddef.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
-            <file>$PROJ_DIR$\..\CMSIS\RTOS2\Include\cmsis_os2.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
-            <file>$PROJ_DIR$\..\inc\hw_memmap.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\RTX_Config.__cstat.et</file>
-            <file>$PROJ_DIR$\Debug\Obj\system_tm4c1294.__cstat.et</file>
-            <file>$PROJ_DIR$\Debug\Obj\rtx_lib.__cstat.et</file>
-            <file>$PROJ_DIR$\..\CMSIS\RTOS2\RTX\Source\rtx_thread.c</file>
-            <file>$PROJ_DIR$\..\CMSIS\RTOS2\RTX\Include\rtx_os.h</file>
-            <file>$PROJ_DIR$\..\CMSIS\RTOS2\RTX\Include\rtx_evr.h</file>
-            <file>$PROJ_DIR$\..\CMSIS\RTOS2\RTX\Library\IAR\IDE\RTE_Components.h</file>
-            <file>$PROJ_DIR$\..\temporizador\src\main.c</file>
+            <file>$PROJ_DIR$\src\driverleds.c</file>
             <file>$PROJ_DIR$\..\CMSIS\RTOS2\RTX\Library\IAR\RTX_CM4F.a</file>
-            <file>$PROJ_DIR$\..\Device\ARM\ARMCM4\Include\ARMCM4_FP.h</file>
-            <file>$TOOLKIT_DIR$\CMSIS\Core\Include\core_cm4.h</file>
-            <file>$PROJ_DIR$\..\Device\ARM\ARMCM4\Include\system_ARMCM4.h</file>
-            <file>$TOOLKIT_DIR$\CMSIS\Core\Include\cmsis_iccarm.h</file>
-            <file>$TOOLKIT_DIR$\CMSIS\Core\Include\cmsis_version.h</file>
-            <file>$PROJ_DIR$\src\RTX_Config.h</file>
-            <file>$TOOLKIT_DIR$\CMSIS\Core\Include\mpu_armv7.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\iccarm_builtin.h</file>
-            <file>$PROJ_DIR$\..\driverlib\gpio.h</file>
             <file>$PROJ_DIR$\..\driverlib\sysctl.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\uartstdio.xcl</file>
+            <file>$PROJ_DIR$\src\RTX_Config.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\startup_tm4c1294.o</file>
+            <file>$PROJ_DIR$\..\driverlib\pin_map.h</file>
+            <file>$TOOLKIT_DIR$\CMSIS\Core\Include\cmsis_iccarm.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
+            <file>$PROJ_DIR$\..\driverlib\rom.h</file>
+            <file>$TOOLKIT_DIR$\lib\m7M_tls.a</file>
+            <file>$PROJ_DIR$\Debug\Obj\RTX_Config.xcl</file>
+            <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
+            <file>$PROJ_DIR$\Debug\Obj\rtx_lib.__cstat.et</file>
+            <file>$PROJ_DIR$\..\CMSIS\RTOS2\RTX\Include\rtx_evr.h</file>
+            <file>$PROJ_DIR$\src\driverleds.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\stddef.h</file>
+            <file>$PROJ_DIR$\..\driverlib\interrupt.h</file>
+            <file>$TOOLKIT_DIR$\config\linker\TexasInstruments\TM4C1294NC.icf</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\iccarm_builtin.h</file>
+            <file>$PROJ_DIR$\..\inc\hw_ints.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
+            <file>$PROJ_DIR$\..\CMSIS\RTOS2\RTX\Library\IAR\IDE\RTE_Components.h</file>
+            <file>$TOOLKIT_DIR$\CMSIS\Core\Include\cmsis_compiler.h</file>
+            <file>$PROJ_DIR$\..\driverlib\debug.h</file>
+            <file>$PROJ_DIR$\..\inc\hw_types.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\driverleds.xcl</file>
+            <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+            <file>$PROJ_DIR$\..\inc\hw_memmap.h</file>
+            <file>$PROJ_DIR$\Debug\Exe\Projeto_elevador.out</file>
+            <file>$PROJ_DIR$\Debug\Obj\driverleds.__cstat.et</file>
+            <file>$PROJ_DIR$\Debug\Obj\uartstdio.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\mydelay.o</file>
+            <file>$PROJ_DIR$\Debug\List\Projeto_elevador.map</file>
+            <file>$PROJ_DIR$\Debug\Obj\system_tm4c1294.xcl</file>
+            <file>$PROJ_DIR$\..\Device\ARM\ARMCM4\Include\system_ARMCM4.h</file>
+            <file>$PROJ_DIR$\..\inc\hw_uart.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\rtx_lib.o</file>
+            <file>$PROJ_DIR$\..\CMSIS\RTOS2\RTX\Include\rtx_os.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\system_tm4c1294.__cstat.et</file>
+            <file>$PROJ_DIR$\..\driverlib\uart.h</file>
+            <file>$TOOLKIT_DIR$\CMSIS\Core\Include\core_cm4.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\rtx_lib.xcl</file>
+            <file>$PROJ_DIR$\Debug\Obj\projeto_elevador.xcl</file>
+            <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
+            <file>$PROJ_DIR$\src\system_tm4c1294.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\RTX_Config.__cstat.et</file>
+            <file>$TOOLKIT_DIR$\inc\c\stdarg.h</file>
+            <file>$PROJ_DIR$\..\driverlib\rom_map.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\system_tm4c1294.o</file>
+            <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
+            <file>$TOOLKIT_DIR$\CMSIS\Core\Include\cmsis_version.h</file>
+            <file>$TOOLKIT_DIR$\CMSIS\Core\Include\mpu_armv7.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\projeto_elevador.__cstat.et</file>
+            <file>$PROJ_DIR$\..\CMSIS\RTOS2\Include\cmsis_os2.h</file>
+            <file>$PROJ_DIR$\..\driverlib\gpio.h</file>
+            <file>$PROJ_DIR$\..\driverlib\systick.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\projeto_elevador.o</file>
+            <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
+            <file>$PROJ_DIR$\..\Device\ARM\ARMCM4\Include\ARMCM4_FP.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\Projeto_elevador.pbd</file>
+            <file>$PROJ_DIR$\..\TivaWare_C_Series-2.1.4.178\utils\uartstdio.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\driverleds.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\RTX_Config.o</file>
         </outputs>
         <file>
-            <name>$PROJ_DIR$\src\startup_tm4c1294.s</name>
+            <name>[ROOT_NODE]</name>
             <outputs>
                 <tool>
-                    <name>AARM</name>
-                    <file> 15</file>
+                    <name>ILINK</name>
+                    <file> 38 42</file>
                 </tool>
             </outputs>
         </file>
@@ -85,12 +95,44 @@
             <name>$PROJ_DIR$\src\rtx_lib.c</name>
             <outputs>
                 <tool>
-                    <name>BICOMP</name>
-                    <file> 16</file>
+                    <name>ICCARM</name>
+                    <file> 46</file>
                 </tool>
                 <tool>
+                    <name>BICOMP</name>
+                    <file> 53</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 21</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
                     <name>ICCARM</name>
+                    <file> 32 16 36 61 68 30 27 15 28 12 47 24 52 65 22 31</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\src\startup_tm4c1294.s</name>
+            <outputs>
+                <tool>
+                    <name>AARM</name>
                     <file> 13</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\src\system_tm4c1294.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 60</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 43</file>
                 </tool>
                 <tool>
                     <name>__cstat</name>
@@ -100,7 +142,26 @@
             <inputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 31 32 33 34 35 36 30 59 63 61 51 42 43 44 52 53</file>
+                    <file> 48 16 36 61 68 30 27 10 71 51 62 32 15 28 63 44</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\EK-TM4C1294_IAR8\TivaWare_C_Series-2.1.4.178\utils\uartstdio.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 40</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 11</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 48 16 36 61 68 30 27 58 29 37 34 45 33 25 17 59 10 50 73</file>
                 </tool>
             </inputs>
         </file>
@@ -109,53 +170,30 @@
             <outputs>
                 <tool>
                     <name>AARM</name>
-                    <file> 18</file>
+                    <file> 41</file>
                 </tool>
             </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\src\driverleds.c</name>
-            <outputs>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 9</file>
-                </tool>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 12</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 38</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 45 32 33 34 35 36 30 46 65 64 39</file>
-                </tool>
-            </inputs>
         </file>
         <file>
             <name>$PROJ_DIR$\src\projeto_elevador.c</name>
             <outputs>
                 <tool>
-                    <name>BICOMP</name>
-                    <file> 19</file>
+                    <name>ICCARM</name>
+                    <file> 69</file>
                 </tool>
                 <tool>
-                    <name>ICCARM</name>
-                    <file> 8</file>
+                    <name>BICOMP</name>
+                    <file> 54</file>
                 </tool>
                 <tool>
                     <name>__cstat</name>
-                    <file> 41</file>
+                    <file> 64</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 37 32 33 34 35 36 30 39 44 42 43 45 46 65 64</file>
+                    <file> 56 16 36 61 68 30 27 23 65 24 52 48 37 10 67 14 66 50 73 58</file>
                 </tool>
             </inputs>
         </file>
@@ -163,45 +201,45 @@
             <name>$PROJ_DIR$\src\RTX_Config.c</name>
             <outputs>
                 <tool>
-                    <name>BICOMP</name>
-                    <file> 14</file>
+                    <name>ICCARM</name>
+                    <file> 75</file>
                 </tool>
                 <tool>
-                    <name>ICCARM</name>
-                    <file> 17</file>
+                    <name>BICOMP</name>
+                    <file> 19</file>
                 </tool>
                 <tool>
                     <name>__cstat</name>
-                    <file> 47</file>
+                    <file> 57</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 31 32 33 34 35 36 30 59 63 51 42 43 44</file>
+                    <file> 32 16 36 61 68 30 27 15 28 47 24 52 65</file>
                 </tool>
             </inputs>
         </file>
         <file>
-            <name>$PROJ_DIR$\src\system_tm4c1294.c</name>
+            <name>$PROJ_DIR$\src\driverleds.c</name>
             <outputs>
                 <tool>
-                    <name>BICOMP</name>
-                    <file> 20</file>
+                    <name>ICCARM</name>
+                    <file> 74</file>
                 </tool>
                 <tool>
-                    <name>ICCARM</name>
-                    <file> 11</file>
+                    <name>BICOMP</name>
+                    <file> 35</file>
                 </tool>
                 <tool>
                     <name>__cstat</name>
-                    <file> 48</file>
+                    <file> 39</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 45 32 33 34 35 36 30 65 56 57 60 31 59 63 62 58</file>
+                    <file> 48 16 36 61 68 30 27 37 10 66 23</file>
                 </tool>
             </inputs>
         </file>
@@ -210,24 +248,15 @@
             <outputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 24</file>
+                    <file> 42</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 23 12 21 18 8 55 17 13 15 11 26 25 27 22</file>
+                    <file> 26 74 7 41 69 9 75 46 13 60 40 70 20 18 55</file>
                 </tool>
             </inputs>
-        </file>
-        <file>
-            <name>[ROOT_NODE]</name>
-            <outputs>
-                <tool>
-                    <name>ILINK</name>
-                    <file> 10 24</file>
-                </tool>
-            </outputs>
         </file>
     </configuration>
     <configuration>
