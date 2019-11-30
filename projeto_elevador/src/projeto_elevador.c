@@ -17,7 +17,8 @@
 #include "driverlib/uart.h"
 #include "utils/uartstdio.h"
 
-#define N_ANDARES 15
+#define N_ANDARES 16
+#define N_ELEVADORES  3
 
 enum estados_elevadores {Parado, Subindo, Descendo, Emergencia};
 
@@ -25,7 +26,7 @@ typedef struct
 {
   int estado;
   int andar_atual;
-  int andares_desejados[N_ANDARES-1];
+  int andares_desejados[N_ANDARES];
 }elevator;
 
 void InicializaPortas(void);
@@ -33,13 +34,13 @@ void UARTInit(void);
 extern void UARTStdioIntHandler(void);
 void UART0_Handler(void);
 void set_init_values(elevator *aux);
+void set_values(int *state, int *floor, int *actual_floor, elevator *aux);
 
 osThreadId_t ElevadorE_id, ElevadorC_id, ElevadorD_id, Gerencia_Elevador_id, Thread_main_id, Thread_Uart_id;
  
-elevator elevadorE, elevadorC, elevadorD;
+elevator elevador[N_ELEVADORES]; //os elevador[0],elevador[1] e elevador[2] correspondem ao elevador da esquerda, central e da direita, respectivamente
 
-
-int oAndar_chamado, oSentido_chamado;
+int oAndar_chamado[N_ELEVADORES], oSentido_chamado[N_ELEVADORES];  
 
 
 const osThreadAttr_t thread_elevadores_attr = {
@@ -54,27 +55,81 @@ const osThreadAttr_t thread_highpri_attr = {
   .priority = osPriorityNormal5
 };
 
+void Thread_Gerencia_Elevador(void *arg)
+{ 
+  int meu_andar[N_ELEVADORES], meu_estado[N_ELEVADORES], prox_andar[N_ELEVADORES], 
+  andar_chamado[N_ELEVADORES],sentido_chamado[N_ELEVADORES];
+  while(1)
+  {
+    //mutex aqui
+    for(int i = 0;i<N_ELEVADORES;i++)
+    {
+      set_values(&meu_estado[i],&prox_andar[i],&meu_andar[i],&elevador[i]);
+      andar_chamado[i] = oAndar_chamado[i];
+      sentido_chamado[i] = oSentido_chamado[i];
+    }
+     //fim de mutex
+    if(andar_chamado[0] != (-1) && andar_chamado[1] != (-1) && andar_chamado[2] != (-1))
+    {
+      for(int j = 0;j<3;j++)
+      {
+        if (andar_chamado[j] != (-1))
+        {
+          if((meu_estado[j] == Subindo && sentido_chamado[j] == Subindo && meu_andar[j] < andar_chamado[j]) ||
+             (meu_estado[j] == Descendo && sentido_chamado[j] == Descendo && meu_andar[j] > andar_chamado[j]))
+          {
+             //adiciona proximo andar
+          }
+          else 
+          {
+             //adiciona ultimo andar
+          }
+        } 
+      }
+    }
+    if (elevador[0].estado != Parado)
+    {
+      //SINAL PARA DESBLOQUEAR THREAD ELEVADOR ESQUERDO
+      osThreadFlagsSet(ElevadorE_id, 0x0001);
+    }
+    if (elevador[1].estado != Parado)
+    {
+      //SINAL PARA DESBLOQUEAR THREAD ELEVADOR CENTRAL
+      osThreadFlagsSet(ElevadorC_id, 0x0001);
+    }
+    if (elevador[2].estado != Parado)
+    {
+      //SINAL PARA DESBLOQUEAR THREAD ELEVADOR DIREITA 
+      osThreadFlagsSet(ElevadorD_id, 0x0001);
+    }
+    osDelay(100);
+  }
+} // Gerencia_Elevador
 
 void Thread_ElevadorE(void *arg)
 {
+  int meu_estado, meu_andar, prox_andar;
   while(1)
   {
-    if (elevadorE.andar_atual == elevadorE.andares_desejados[0])
+    // MUTEX AQUI
+    set_values(&meu_estado,&prox_andar,&meu_andar,&elevador[0]);
+    //FIM DO MUTEX 
+    if (meu_andar == prox_andar)
     {
-      elevadorE.estado = Parado;
+      meu_estado = Parado;
     }
     else
     {
-      if(elevadorE.andar_atual < elevadorE.andares_desejados[0])
+      if(meu_andar < prox_andar)
       {
-        elevadorE.estado = Subindo;
+        meu_estado = Subindo;
       }
       else
       {
-        elevadorE.estado = Descendo;
+        meu_estado = Descendo;
       }
     }
-    switch(elevadorE.estado)
+    switch(meu_estado)
     {
     case Parado:
       UARTprintf("ep\r");
@@ -96,25 +151,28 @@ void Thread_ElevadorE(void *arg)
 
 void Thread_ElevadorC(void *arg)
 {
+  int meu_estado, meu_andar, prox_andar;
   while(1)
   {
-    if (elevadorC.andar_atual == elevadorC.andares_desejados[0])
+    // MUTEX AQUI
+    set_values(&meu_estado,&prox_andar,&meu_andar,&elevador[1]);
+    //FIM DO MUTEX 
+    if (meu_andar == prox_andar)
     {
-      
-      elevadorC.estado = Parado;
+      meu_estado = Parado;
     }
     else
     {
-      if(elevadorC.andar_atual < elevadorC.andares_desejados[0])
+      if(meu_andar < prox_andar)
       {
-        elevadorC.estado = Subindo;
+        meu_estado = Subindo;
       }
       else
       {
-        elevadorC.estado = Descendo;
+        meu_estado = Descendo;
       }
     }
-    switch(elevadorC.estado)
+    switch(meu_estado)
     {
     case Parado:
       UARTprintf("cp\r");
@@ -136,24 +194,29 @@ void Thread_ElevadorC(void *arg)
 
 void Thread_ElevadorD(void *arg)
 {
+  int meu_estado, meu_andar, prox_andar;
   while(1)
   {
-    if (elevadorD.andar_atual == elevadorD.andares_desejados[0])
+    // MUTEX AQUI
+    set_values(&meu_estado,&prox_andar,&meu_andar,&elevador[2]);
+    
+    if (meu_andar == prox_andar)
     {
-      elevadorD.estado = Parado;
+      meu_estado = Parado;
     }
     else
     {
-      if(elevadorD.andar_atual < elevadorD.andares_desejados[0])
+      if(meu_andar < prox_andar && meu_estado != Subindo)
       {
-        elevadorD.estado = Subindo;
+        meu_estado = Subindo;
       }
-      else
+      else if(meu_andar > prox_andar && meu_estado != Descendo)
       {
-        elevadorD.estado = Descendo;
+        meu_estado = Descendo;
       }
     }
-    switch(elevadorD.estado)
+    //FIM DO MUTEX 
+    switch(meu_estado)
     {
     case Parado:
       UARTprintf("dp\r");
@@ -173,41 +236,6 @@ void Thread_ElevadorD(void *arg)
   }
 } // ElevadorD
 
-void Thread_Gerencia_Elevador(void *arg)
-{
-  while(1)
-  {
-    if (oSentido_chamado != Parado)
-    {
-      if (oSentido_chamado == Subindo)
-      {
-        
-      }
-      else 
-      {
-        
-      }
-    }
-    if (elevadorE.estado != Parado)
-    {
-      //SINAL PARA DESBLOQUEAR THREAD ELEVADOR ESQUERDO
-      osThreadFlagsSet(ElevadorE_id, 0x0001);
-    }
-    if (elevadorC.estado != Parado)
-    {
-      //SINAL PARA DESBLOQUEAR THREAD ELEVADOR CENTRAL
-      osThreadFlagsSet(ElevadorC_id, 0x0001);
-    }
-    if (elevadorD.estado != Parado)
-    {
-      //SINAL PARA DESBLOQUEAR THREAD ELEVADOR DIREITA 
-      osThreadFlagsSet(ElevadorD_id, 0x0001);
-    }
-    osDelay(100);
-  }
-} // Gerencia_Elevador
-
-
 void Thread_Uart(void *arg)
 {
   while(1)
@@ -225,18 +253,16 @@ void Thread_main(void *arg)
   ElevadorD_id = osThreadNew(Thread_ElevadorD, (void* )'d', &thread_elevadores_attr);
   Gerencia_Elevador_id = osThreadNew(Thread_Gerencia_Elevador, NULL, &thread_gerenciador_attr);
   
-  set_init_values(&elevadorE);
-  set_init_values(&elevadorC);
-  set_init_values(&elevadorD);
-  
-  oAndar_chamado = (-1);
-  oSentido_chamado = Parado;
-  
+  for(int i = 0;i<N_ELEVADORES;i++)
+  {
+    set_init_values(&elevador[i]);
+    oAndar_chamado[i] = (-1);
+    oSentido_chamado[i] = Parado;
+  } 
   osDelay(osWaitForever);
   
   while(1);
 } // Thread_main
-
 
 void main(void){
   SystemInit();
@@ -292,8 +318,53 @@ void set_init_values(elevator *aux)
   int i;
   aux->estado = 0; 
   aux->andar_atual = 0;
-  for(i=0;i<N_ANDARES-1;i++)
+  for(i=0;i<N_ANDARES;i++)
   {
     aux->andares_desejados[i] = -1;
   }
+}
+
+void set_values(int *state, int *floor, int *actual_floor, elevator *aux)
+{
+  *state = aux->estado;
+  *actual_floor = aux->andar_atual;
+  *floor = aux->andares_desejados[0];
+}
+
+void adiciona_andar(elevator *aux,int n_andar,bool lugar)
+{
+  int i, existe = 0, aux_first,aux_second;
+  for(i=0;i<N_ANDARES;i++)
+  {
+    if(aux->andares_desejados[i] == n_andar){existe = 1;}
+  }
+  i=0;
+  if(existe == 0)
+  {
+    if(lugar == 0)
+    {
+      while(aux->andares_desejados[i] < -1){i++;}
+      aux->andares_desejados[i] = n_andar;
+    }
+    else
+    {
+      for(i=0;i<N_ANDARES-1;i++)
+      {
+        if(i == 0)
+        {
+          aux_first = aux->andares_desejados[i+1];
+          aux->andares_desejados[i+1] = aux->andares_desejados[i];   
+          aux->andares_desejados[i] = n_andar;
+        }
+        else
+        {
+          aux_second = aux->andares_desejados[i+1];
+          aux->andares_desejados[i+1] = aux_first;
+          aux_first = aux_second;
+        }
+      }
+    }
+  }
+  
+  
 }
