@@ -1,6 +1,5 @@
 /*
  * Copyright (c) 2013-2018 Arm Limited. All rights reserved.
- *
  * SPDX-License-Identifier: Apache-2.0
  *
  * Licensed under the Apache License, Version 2.0 (the License); you may
